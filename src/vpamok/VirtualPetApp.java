@@ -9,16 +9,16 @@ public class VirtualPetApp {
 		VirtualPetShelter shelter = new VirtualPetShelter();
 		Scanner input = new Scanner(System.in);
 
-		// Using OrganicPet interface to create OrgDog object
+		// Using OrganicPet interface to create OrgDog object. Interfaces can't instantiate
 		OrganicPet lassie = new OrgDog("Lassie", "Collie");
 		shelter.intake(lassie);
 		// Using RoboticPet interface to create Robodog object
 		RoboticPet K9 = new RoboDog("K9", "A robotic dog");
 		shelter.intake(K9);
-		// Using OrganicPet interface to create OrgDog object
+		// Using OrganicPet interface to create OrgCat object
 		OrganicPet felix = new OrgCat("Felix", "A wonderful cat");
 		shelter.intake(felix);
-		// Using RoboticPet interface to create Robodog object
+		// Using RoboticPet interface to create Robocat object
 		RoboticPet M30W = new RoboCat("M30W", "A robotic cat");
 		shelter.intake(M30W);
 
