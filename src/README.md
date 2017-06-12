@@ -3,8 +3,13 @@ Virtual Pets Amok
     
     Synopsis:
     ---------
-    Welcome to the Virtual Pets Amok. 
-    
+    Welcome to the Virtual Pets Amok. This app simulates a virtual pet shelter. The shelter houses dogs, cats,
+    robotic dog, and robotic cats. The shelter allows a user to select to feed all the pets in the shelter and 
+    give water to all pets in the shelter. In addition, the user may enter a single pet, play with a single pet 
+    in the shelter, and feed a single pet in the shelter. The status of the pets will update accordingly based 
+    on the interaction from the user. A user can select to clean pet cages, clean the shelter litter box, walk 
+    the dogs, and maintenance/maintain the robotic pets in the shelter. A user may also adopt a pet currently 
+    living in the shelter or admit a new pet to the shelter.
     
      VirtualPetShelter Class
      =======================
