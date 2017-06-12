@@ -4,19 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VirtualPetShelter {
-	// Map of pets and attributes
+	// instance variables
 	private int litterBox = 50;
-
+	
+	// constructor for Map of pets in shelter
 	Map<String, VirtualPet> shelterPets = new HashMap<String, VirtualPet>();
 
+	//returns status value of litterbox
 	public int getLitterBox() {
 		return litterBox;
 	}
-
+    
+	//clean litter box returns a 0 status to litter box
 	public void cleanLitterBox() {
 		litterBox = 0;
 	}
-
+    //maintain all robotic pets
 	public void maintainAllRobo() {
 		for (VirtualPet pet : pets()) {
 			if (pet instanceof RoboticPet) {
@@ -25,7 +28,7 @@ public class VirtualPetShelter {
 			}
 		}
 	}
-
+    //clean cages of all organic dogs in shelter
 	public void cleanDogCages() {
 		for (VirtualPet pet : pets()) {
 			if (pet instanceof OrgDog) {
@@ -33,7 +36,7 @@ public class VirtualPetShelter {
 			}
 		}
 	}
-
+    //walks all dogs in shelter
 	public void walkDogs() {
 		for (VirtualPet pet : pets()) {
 			if (pet instanceof Dog) {
@@ -43,18 +46,21 @@ public class VirtualPetShelter {
 
 	}
 
+	//intake a virtual pet in to the shelter
 	public void intake(VirtualPet pet) {
-		shelterPets.put(pet.getName(), (VirtualPet) pet);//casting up as Virtual pet
+		shelterPets.put(pet.getName(), (VirtualPet) pet);
 	}
 
+	// passes in type Robotic pet type.  casting up as Virtual pet to put in shelter pet map
 	public void intake(RoboticPet pet) {
-		shelterPets.put(pet.getName(), (VirtualPet) pet);//casting up as Virtual pet
+		shelterPets.put(pet.getName(), (VirtualPet) pet);
 	}
-
+	//passes in type Organic pet type.  casting up as Virtual pet to put in shelter pet map
 	public void intake(OrganicPet pet) {
-		shelterPets.put(pet.getName(), (VirtualPet) pet);//casting up as Virtual pet
+		shelterPets.put(pet.getName(), (VirtualPet) pet);
 	}
 
+	//feeds all organic pets
 	public void feedAllOrganic() {
 		for (VirtualPet pet : pets()) {
 			if (pet instanceof OrganicPet) {
@@ -64,7 +70,7 @@ public class VirtualPetShelter {
 		litterBox += 10;
 	}
 
-	//Water all organic pets
+	//Waters all organic pets
 	public void waterAllOrganic() {
 		for (VirtualPet pet : pets()) {
 			if (pet instanceof OrganicPet) {

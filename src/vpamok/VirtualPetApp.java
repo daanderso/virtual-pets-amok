@@ -1,4 +1,5 @@
 package vpamok;
+
 import java.util.Scanner;
 
 public class VirtualPetApp {
@@ -8,38 +9,44 @@ public class VirtualPetApp {
 		VirtualPetShelter shelter = new VirtualPetShelter();
 		Scanner input = new Scanner(System.in);
 
-		OrganicPet buddy = new OrgDog("Buddy", "Lab");
-		shelter.intake(buddy);
-		RoboticPet paul = new RoboDog("RoboDog", "A robotic dog");
-		shelter.intake(paul);
+		// Using OrganicPet interface to create OrgDog object
+		OrganicPet lassie = new OrgDog("Lassie", "Collie");
+		shelter.intake(lassie);
+		// Using RoboticPet interface to create Robodog object
+		RoboticPet K9 = new RoboDog("K9", "A robotic dog");
+		shelter.intake(K9);
+		// Using OrganicPet interface to create OrgDog object
 		OrganicPet felix = new OrgCat("Felix", "A wonderful cat");
 		shelter.intake(felix);
-		RoboticPet oly = new RoboCat("RoboCat", "A robotic cat");
-		shelter.intake(oly);
+		// Using RoboticPet interface to create Robodog object
+		RoboticPet M30W = new RoboCat("M30W", "A robotic cat");
+		shelter.intake(M30W);
 
 		boolean quit = false;
 
 		do {
+			//decrease organic cats health when litter box stat is >= 100
 			if (shelter.getLitterBox() >= 100) {
-				writeLine("The litterbox is really dirty and is affecting the health of all cats in the shelter.");
+				writeLine("The litter box is dirty and is decreasing the health of all cats in the shelter.");
 				for (VirtualPet pet : shelter.pets()) {
 					if (pet instanceof OrgCat) {
 						((OrgCat) pet).decreaseHealth();
 					}
 				}
 			}
+			//decrease an organic dogs health if cage messiness stat is >=100
 			for (VirtualPet pet : shelter.pets()) {
 				if (pet instanceof OrgDog) {
-
 					if (((OrgDog) pet).getCageMessiness() >= 100) {
 						writeLine("The organic dog " + pet.getName()
-								+ "'s cage needs cleaning and is currently negatively affecting their health.");
+								+ "'s cage needs cleaning and is currently decreasing in health.");
 						((OrgDog) pet).decreaseHealth();
 					}
 				}
 			}
-
-			writeLine("\nThank you for volunteering at the virtual pet animal shelter!");
+            
+			// Display Virtual Pet shelter Status and interactive menu
+			writeLine("\nThank you for volunteering at the Virtual Pet Animal Shelter!");
 			writeLine("\nThis is the status of your pets: ");
 			writeLine("\nName\t|Mood\t|Health\t|Hunger\t|Thirst\t|OilLvl\t|CageMess");
 			writeLine("--------|-------|-------|-------|-------|-------|-------");
@@ -61,8 +68,8 @@ public class VirtualPetApp {
 				System.out.print("\n");
 
 			}
-			
-			writeLine("The litterbox is: " + shelter.getLitterBox());
+
+			writeLine("\n|Shelter litterbox|\n" +"\t" + shelter.getLitterBox());
 			writeLine("\nWhat would you like to do next?");
 			writeLine(
 					"\n1.Feed the organic pets \n2.Water the organic pets \n3.Play with a pet \n4.Adopt a pet \n5.Admit a pet \n6.Clean Cages \n7.Clean Litterbox \n8.Walk Dogs \n9.Maintain all RoboPets \n10.Do nothing \n11.Quit");
@@ -70,27 +77,27 @@ public class VirtualPetApp {
 
 			switch (response) {
 			case "1":
-				//Feed all shelter pets
+				// Feed all shelter pets
 				shelter.feedAllOrganic();
 				writeLine("You fed all the organic pets!");
 				break;
 			case "2":
-				//Water all shelter pets
+				// Water all shelter pets
 				shelter.waterAllOrganic();
 				writeLine("You watered all the organic pets!");
 				break;
-			case "3": 
+			case "3":
 				// Play with a single pet
-				writeLine("Ok, so you'd like to play with a pet. Please choose one:\n");
+				writeLine("You selected to play with a pet. Please choose one:\n");
 				displayPets(shelter);
 				writeLine("\nWhich pet would you like to play with?");
 				String petName = input.nextLine();
 				shelter.playOne(shelter.getPet(petName));
 				writeLine("OK, you play with " + shelter.getPet(petName) + ". ");
 				break;
-			case "4": 
+			case "4":
 				// Adopt a pet
-				writeLine("Ok, so you'd like to adopt a pet. Please choose one:\n");
+				writeLine("You selected to adopt a pet. Please choose one:\n");
 				displayPets(shelter);
 				writeLine("\nWhich pet would you like to adopt");
 				String nameToAdopt = input.nextLine();
@@ -100,33 +107,33 @@ public class VirtualPetApp {
 				break;
 			case "5":
 				// Intake a pet
-				writeLine("Ok you have a pet for us! Is it organic or robotic?");
+				writeLine("You have a pet for us to intake, is it organic or robotic?");
 				String response2 = input.next();
 				if (response2.equalsIgnoreCase("organic")) {
 					writeLine("Great! is your organic pet a cat or a dog?");
 					String response3 = input.next();
 					input.nextLine();
-					
+
 					if (response3.equalsIgnoreCase("dog")) {
 						writeLine("Great! What is the dog's name?");
 						String name = input.nextLine();
-						
+
 						writeLine("Great! What is a short description of the dog?");
 						String description = input.nextLine();
-						
+
 						OrganicPet pet = new OrgDog(name, description);
 						shelter.intake(pet);
-						writeLine("Thanks! We'll take good care of " + pet.getName()+".");
+						writeLine("Thanks! We'll take good care of " + pet.getName() + ".");
 					} else if (response3.equalsIgnoreCase("cat")) {
 						writeLine("Great! What is the cat's name?");
 						String name = input.nextLine();
-				
+
 						writeLine("Great! What is a short description of the cat?");
 						String description = input.nextLine();
-						
+
 						OrganicPet pet = new OrgCat(name, description);
 						shelter.intake(pet);
-						writeLine("Thanks! We'll take good care of " + pet.getName()+".");
+						writeLine("Thanks! We'll take good care of " + pet.getName() + ".");
 					}
 
 				} else if (response2.equalsIgnoreCase("robotic")) {
@@ -135,44 +142,44 @@ public class VirtualPetApp {
 					input.nextLine();
 
 					if (response3.equalsIgnoreCase("dog")) {
-						writeLine("Great! What is the dog's name?");
+						writeLine("What is the dog's name?");
 						String name = input.nextLine();
 						writeLine("Please give a short description of the dog?");
 						String description = input.nextLine();
-						
+
 						RoboticPet pet = new RoboDog(name, description);
 						shelter.intake(pet);
-						writeLine("Thanks! We'll take good care of " + pet.getName()+".");
+						writeLine("Thanks! We'll take good care of " + pet.getName() + ".");
 
 					} else if (response3.equalsIgnoreCase("cat")) {
-						writeLine("Great! What is the cat's name?");
+						writeLine("What is the cat's name?");
 						String name = input.nextLine();
 						writeLine("Please give a short description of the cat?");
 						String description = input.nextLine();
-						
+
 						RoboticPet pet = new RoboCat(name, description);
 						shelter.intake(pet);
-						writeLine("Thanks! We'll take good care of " + pet.getName()+".");
+						writeLine("Thanks! We'll take good care of " + pet.getName() + ".");
 					}
 				}
 				break;
 			case "6":
-				//Clean organic dog cages
+				// Clean organic dog cages
 				shelter.cleanDogCages();
-				writeLine("You clean all the dog cages!");
+				writeLine("You cleaned all the dog cages!");
 				break;
 			case "7":
-				//clean organic cat litter box
+				// clean organic cat litter box
 				shelter.cleanLitterBox();
-				writeLine("You cleaned the litterbox!");
+				writeLine("You cleaned the litter box!");
 				break;
 			case "8":
-				//Walk all the dogs in the shelter
+				// Walk all the dogs in the shelter
 				shelter.walkDogs();
 				writeLine("You walked all the dogs!");
 				break;
 			case "9":
-				//maintain all robotic pets
+				// maintain all robotic pets
 				shelter.maintainAllRobo();
 				writeLine("You maintained all robotic pets!");
 				break;

@@ -26,6 +26,10 @@ public class OrgDog extends Dog implements OrganicPet {
 		cageMessiness += 10;
 	}
 
+	public void decreaseHealth() {
+		health -= 10;
+	}
+	
 	@Override
 	public void walk() {
 		cageMessiness -= 5;
@@ -90,9 +94,5 @@ public class OrgDog extends Dog implements OrganicPet {
 	public int getThirst() {
 		return thirst;
 	}
-
-	public void decreaseHealth() {
-
-		health -= 10;
-	}
+    
 }
